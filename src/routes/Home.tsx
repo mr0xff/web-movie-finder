@@ -1,7 +1,12 @@
+import Button from "@/components/Button";
+
 export default function Home(){
   return(
-    <main>
-      main
-    </main>
+    <div>
+      <section>
+        new items searched
+      </section>
+      <Button>test</Button>
+    </div>
   )
 }
