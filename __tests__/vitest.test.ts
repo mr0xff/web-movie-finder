@@ -7,7 +7,7 @@ test("setup vitest runner...", ()=>{
 test("random test runner implementation", ()=>{
   const randInt = (fallbackNumber=1)=> fallbackNumber ?? Math.round(Math.random()*10);
   
-  const MAGIC_NUMBER: [ number, string ] = [ 
+  const MAGIC_NUMBER: [ number, number ] = [ 
     randInt(), 
     randInt()
   ];

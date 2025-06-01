@@ -5,5 +5,5 @@ import { render, screen } from '@testing-library/react';
 
 test("Index page render", async ()=> {
   render(<App />);
-  expect(screen.getByRole("heading"));
+  expect(screen.getByRole("heading")).toHaveTextContent("hello world");
 });
