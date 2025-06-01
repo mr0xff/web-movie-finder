@@ -1,9 +1,12 @@
 import '@testing-library/jest-dom/vitest';
-import App from '../src/App';
 import { test, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
-test("Index page render", async ()=> {
+import App from '../src/App';
+
+test("main page", async ()=> {
   render(<App />);
+  
+  expect(screen.getByRole("button")).toHaveTextContent("click me");
   expect(screen.getByRole("heading")).toHaveTextContent("hello world");
 });
