@@ -9,7 +9,7 @@ export default function SearchMobile(){
   return(
     <button 
       onClick={()=>inputRef.current?.focus()} 
-      className="z-50 fixed md:hidden bottom-5 right-3 hover:bg-red-400 cursor-pointer active:bg-red-600 p-2 bg-red-500 rounded-full border border-white/25 "
+      className="z-50 fixed md:hidden bottom-20 right-3 hover:bg-red-400 cursor-pointer active:bg-red-600 p-2 bg-red-500 rounded-full border border-white/25 "
     >
       <IoSearchSharp className="size-10" />
     </button>

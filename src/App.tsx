@@ -1,25 +1,22 @@
-import { BrowserRouter, Route, Routes } from "react-router";
-import Home from "@/routes/Home";
-import Layout from "@/components/Layout";
-import { SearchInputContext } from "@/lib/contextProvider";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Router from "@/routes/Router";
+import { SearchInputContext, FinderMoviesContext } from "@/lib/contextProvider";
 import { QueryClientProvider , QueryClient} from "@tanstack/react-query";
+import type { Movie } from "@/lib/types";
+
 const queryClient = new QueryClient();
 
 export default function App(){
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const finderMovies = useState<Movie[]>([]);
   
   return(
     <SearchInputContext.Provider value={searchInputRef}>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route index element={<Home />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </QueryClientProvider>
+      <FinderMoviesContext.Provider value={finderMovies}>
+        <QueryClientProvider client={queryClient}>
+          <Router />
+        </QueryClientProvider>
+      </FinderMoviesContext.Provider>
     </SearchInputContext.Provider>
   )
 }

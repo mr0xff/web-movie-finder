@@ -1,6 +1,7 @@
 import type { Movie } from "@/lib/types";
 import { FaStar } from "react-icons/fa";
 import { NavLink } from "react-router";
+
 export default function MovieCard({
   movie
 }: {
@@ -9,7 +10,7 @@ export default function MovieCard({
   return(
     <NavLink to={{
       pathname: "/movie",
-      search: "id=1000"
+      search: `movieId=${movie.imdbID}`
     }}>
     <div className="m-1 relative w-60 hover:cursor-pointer hover:scale-110 transition">
       <div className="absolute z-10 top-0 bg-gradient-to-b from-black/50  from-[50%] w-full text-lg px-3 py-2 h-16" />
@@ -17,10 +18,12 @@ export default function MovieCard({
       <div className="absolute z-10 bottom-0 left-0 bg-gradient-to-t from-black/80 hover:from-black/90 from-[50%] w-full text-lg px-3 py-2">
         <h2 className="font-bold line-clamp-1">{movie.Title}</h2>
         <p className="text-red-400 text-sm font-medium">{movie.Genre}</p>
-        <p className="font-bold flex gap-x-2 items-center">
+        {!!movie.Ratings && <p className="font-bold flex gap-x-2 items-center">
           <FaStar />
-          {movie.Ratings[0].Value.split("/")[0]}
-        </p>
+          {movie?.Ratings[0].Value.split("/")[0]}
+        </p>}
+        {!!movie.Year && <p>{movie.Year}</p>}
+        {!!movie.Type && <p>{movie.Type}</p>}
       </div>
     </div>
     </NavLink>
