@@ -17,7 +17,9 @@ export default function TopMoviesCard(){
     return <ErrorBoundary />;
 
   return(
-    <div>
+    <div className="my-3">
+      <h2 className="uppercase font-bold text-xl">Filmes em Destaque</h2>
+      <div className="mt-3 flex gap-x-3 overflow-x-scroll h-96">
       {data.map((props, index) =>(
         <div key={index}>
           <MovieCard
@@ -25,6 +27,7 @@ export default function TopMoviesCard(){
           />
         </div>
       ))}
+    </div>
     </div>
   ) 
 }

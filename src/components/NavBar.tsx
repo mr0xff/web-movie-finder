@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { FiSearch,  } from "react-icons/fi";
 import { IoCloseOutline } from "react-icons/io5";
 import type { SearchInputRef } from "@/lib/types";
@@ -22,26 +22,28 @@ export default function NavBar() {
   return (
     <nav className="bg-gray-500/10 backdrop-blur-md shadow-md fixed top-0 w-full z-50">
       <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between">
-        <div className="text-xl font-bold text-gray-800 text-white">MOVIE FINDER</div>
+        <div className="text-xl font-bold text-gray-800 text-white mb-3 md:mb-0 flex gap-x-3 items-center">
+          <img src="/logo.png" className="size-15" />
+          MOVIE FINDER
+        </div>
         <form
           onSubmit={handleSearch}
-          className="flex items-center w-full max-w-md bg-gray-100 rounded-full px-4 py-2"
+          className="flex items-center w-full max-w-md bg-black rounded-full px-4 py-2 outline-2 outline-red-500"
         >
           <input
             ref={inputRef}
             type="text"
             placeholder="Buscar filme ..."
-            className="flex-grow bg-transparent outline-none text-gray-700 placeholder-gray-400"
+            className="flex-grow outline-none bg-transparent"
             value={query}
-            autoFocus
             onChange={(e) => setQuery(e.target.value)}
           />
-          <button type="submit" className="hidden md:block text-gray-600 hover:text-blue-600">
+          <button type="submit" className="hidden md:block hover:text-gray-600">
             <FiSearch size={20} />
           </button>
 
           {!!query && 
-          <button onClick={()=>setQuery("")} type="button" className="text-gray-600 hover:text-blue-600">
+          <button onClick={()=>setQuery("")} type="button" className="text-red-500 hover:text-red-600">
             <IoCloseOutline size={20} />
           </button>}
         </form>

@@ -7,7 +7,7 @@ export default function Layout(){
     <main>
       <NavBar />
       
-      <section className="mt-32 md:mt-16 border">
+      <section className="mt-48 md:mt-32 px-3 md:flex md:flex-col md:items-center">
         <Outlet />
       </section>
       
