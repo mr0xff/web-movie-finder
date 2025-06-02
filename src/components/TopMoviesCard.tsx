@@ -20,7 +20,7 @@ export default function TopMoviesCard(){
 
   return(
     <div className="my-3">
-      <div className="h-96 mb-3 bg-[url('https://m.media-amazon.com/images/M/MV5BOTJhMWVmM2QtNzg4NS00Y2Q5LTk0YmYtODg2N2ViZTYwYzA5XkEyXkFqcGc@._V1_SX300.jpg')] bg-no-repeat bg-cover bg-center">
+      <div className="h-96 mb-3 rounded-xl bg-[url('https://m.media-amazon.com/images/M/MV5BOTJhMWVmM2QtNzg4NS00Y2Q5LTk0YmYtODg2N2ViZTYwYzA5XkEyXkFqcGc@._V1_SX300.jpg')] bg-no-repeat bg-cover bg-center">
         <div className="w-full flex h-full items-center bg-gradient-to-t from-black/80 from-[60%] px-16 md:pl-32">
           <div className="w-full">
             <p className="uppercase text-white/50 text-sm font-medium">Destaque</p>
