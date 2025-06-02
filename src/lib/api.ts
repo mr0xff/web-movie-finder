@@ -14,12 +14,12 @@ export async function getTopMovies(){
   return [fallback.data, fallback.data, fallback.data, fallback.data]
 }
 
-export async function findMoviesByName({ title }: { title: string }){
+export async function findMoviesByName({ title, page }: { title: string; page: number }){
   const result = await instance.get<FoundedMovies>('/', {
     params: {
       apikey: SERVICE_API_KEY,
       s: title,
-      page: 2
+      page
     }
   });
 
