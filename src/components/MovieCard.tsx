@@ -12,7 +12,7 @@ export default function MovieCard({
       pathname: "/movie",
       search: `movieId=${movie.imdbID}`
     }}>
-    <div className="m-1 relative w-60 hover:cursor-pointer hover:scale-110 transition">
+    <div className="m-1 relative w-60 hover:cursor-pointer hover:scale-110 transition min-h-96">
       <div className="absolute z-10 top-0 bg-gradient-to-b from-black/50  from-[50%] w-full text-lg px-3 py-2 h-16" />
       <img src={movie.Poster} className="z-0 w-full h-full" />
       <div className="absolute z-10 bottom-0 left-0 bg-gradient-to-t from-black/80 hover:from-black/90 from-[50%] w-full text-lg px-3 py-2">

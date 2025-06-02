@@ -1,5 +1,7 @@
 type ButtonProps = React.PropsWithChildren<React.ButtonHTMLAttributes<HTMLButtonElement>>;
+
 import clsx from "clsx";
+
 export default function Button(props:ButtonProps){
   return(
     <button {...props} className={clsx(
