@@ -4,14 +4,33 @@ import type { Movie, FoundedMovies } from "@/lib/types";
 const SERVICE_API_KEY="a67edf09";
 
 export async function getTopMovies(){
-  const fallback = await instance.get<Movie>('/', {
+  const topList = [
+    "tt10366206",
+    "tt1825683",
+    "tt0293429",
+    "tt4154796"
+  ];
+  
+  const apiList = topList.map((id) => instance.get<Movie>('/', {
     params: {
-      t: "hacker",
-      apikey: SERVICE_API_KEY
+      i: id,
+      apiKey: SERVICE_API_KEY
     }
-  });
+  }));
 
-  return [fallback.data, fallback.data, fallback.data, fallback.data]
+  const [
+    eno,
+    two,
+    three,
+    four
+  ] = await Promise.all(apiList);
+
+  return [
+    eno.data, 
+    two.data, 
+    three.data, 
+    four.data
+  ];
 }
 
 export async function findMoviesByName({ title, page }: { title: string; page: number }){

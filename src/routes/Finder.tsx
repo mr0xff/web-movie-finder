@@ -2,7 +2,6 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import MovieCard from "@/components/MovieCard";
 import Pagination from "@/components/Pagination";
 import { useFindMoviesByName } from "@/lib/hooks";
-import { useEffect } from "react";
 import { useSearchParams } from "react-router";
 import Loading from "@/components/Loading";
 
@@ -38,7 +37,7 @@ export default function Finder(){
         ))}
       </div>
 
-      <Pagination pages={data.totalResults} />
+      <Pagination pages={Math.round(data.totalResults/10)} />
     </main>
   )
 }

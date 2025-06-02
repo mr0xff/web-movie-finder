@@ -1,16 +1,12 @@
-import { getTopMovies } from "@/lib/api";
-import { useQuery } from "@tanstack/react-query";
-import ErrorBoundary from "./ErrorBoundary";
-import Loading from "./Loading";
-import MovieCard from "./MovieCard";
-import Button from "./Button";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import Loading from "@/components/Loading";
+import MovieCard from "@/components/MovieCard";
+import Button from "@/components/Button";
 import { IoMdInformationCircleOutline } from "react-icons/io";
+import { useGetTopMovies } from "@/lib/hooks";
 
 export default function TopMoviesCard(){
-  const { data, error, isPending } = useQuery({ 
-    queryKey: ["topList"],
-    queryFn: getTopMovies
-  });
+  const { data, error, isPending } = useGetTopMovies();
   
   if(isPending)
     return <Loading />;
@@ -20,7 +16,7 @@ export default function TopMoviesCard(){
 
   return(
     <div className="my-3">
-      <div className="h-96 mb-3 rounded-xl bg-[url('https://m.media-amazon.com/images/M/MV5BOTJhMWVmM2QtNzg4NS00Y2Q5LTk0YmYtODg2N2ViZTYwYzA5XkEyXkFqcGc@._V1_SX300.jpg')] bg-no-repeat bg-cover bg-center">
+      <div className="h-96 mb-3 rounded-xl bg-[url('https://m.media-amazon.com/images/M/MV5BY2Q2ZmI5ZjUtNWVhMC00YzJkLTlmYjMtY2RmZDhkNzEzYjZhXkEyXkFqcGc@._V1_SX300.jpg')] bg-no-repeat bg-contain bg-center">
         <div className="w-full flex h-full items-center bg-gradient-to-t from-black from-[10%] px-16 md:pl-32">
           <div className="w-full">
             <p className="uppercase text-white/50 text-sm font-medium">Destaque</p>
@@ -38,15 +34,14 @@ export default function TopMoviesCard(){
       </div>
 
       <h2 className="uppercase font-bold text-xl">Filmes em Destaque</h2>
-      <div className="mt-3 flex gap-x-3 overflow-x-scroll h-96 scroll-none">
-      {data.map((props, index) =>(
-        <div key={index}>
-          <MovieCard
-            movie={props}
-          />
-        </div>
-      ))}
-    </div>
+      <div className="mt-3 flex gap-x-3 overflow-x-auto h-96 scroll-none">
+        {data.map((props, index) => <MovieCard key={index} movie={props} />)}
+      </div>
+
+      <h2 className="uppercase font-bold text-xl">Filmes Visualizados</h2>
+      {/* <div className="mt-3 flex gap-x-3 overflow-x-auto h-96 scroll-none">
+        {data.map((props, index) => <MovieCard key={index} movie={props} />)}
+      </div> */}
     </div>
   ) 
 }
