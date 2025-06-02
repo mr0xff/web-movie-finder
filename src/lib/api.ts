@@ -44,3 +44,14 @@ export async function findMoviesByName({ title, page }: { title: string; page: n
 
   return result.data;
 }
+
+export async function getMovieById(id: string){
+  const movie = await instance.get<Movie>("/", {
+    params: {
+      apikey: SERVICE_API_KEY,
+      i: id
+    }
+  });
+
+  return movie.data;
+}
