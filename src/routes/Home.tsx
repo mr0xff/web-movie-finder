@@ -1,11 +1,10 @@
 import Button from "@/components/Button";
+import TopMoviesCard from "@/components/TopMoviesCard";
 
 export default function Home(){
   return(
     <div>
-      <section>
-        new items searched
-      </section>
+      <TopMoviesCard />
       <Button>test</Button>
     </div>
   )

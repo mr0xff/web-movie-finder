@@ -9,3 +9,5 @@ export interface Movie {
   }],
   Poster: string;
 }
+
+export type SearchInputRef = React.RefObject<HTMLInputElement>;

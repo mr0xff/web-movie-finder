@@ -1,15 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { FiSearch,  } from "react-icons/fi";
 import { IoCloseOutline } from "react-icons/io5";
-
+import type { SearchInputRef } from "@/lib/types";
+import { SearchInputContext } from "@/lib/contextProvider";
 export default function NavBar() {
   const [query, setQuery] = useState("");
+  const inputRef = useContext(SearchInputContext) as SearchInputRef;
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Search for:", query);
+    alert(query);
     // Trigger search logic here
   };
+  
+  useEffect(()=>{
+    inputRef.current?.focus();
+    console.log(inputRef.current);
+  }, []);
 
   return (
     <nav className="bg-gray-500/10 backdrop-blur-md shadow-md fixed top-0 w-full z-50">
@@ -20,13 +28,15 @@ export default function NavBar() {
           className="flex items-center w-full max-w-md bg-gray-100 rounded-full px-4 py-2"
         >
           <input
+            ref={inputRef}
             type="text"
             placeholder="Buscar filme ..."
             className="flex-grow bg-transparent outline-none text-gray-700 placeholder-gray-400"
             value={query}
+            autoFocus
             onChange={(e) => setQuery(e.target.value)}
           />
-          <button type="submit" className="text-gray-600 hover:text-blue-600">
+          <button type="submit" className="hidden md:block text-gray-600 hover:text-blue-600">
             <FiSearch size={20} />
           </button>
 
