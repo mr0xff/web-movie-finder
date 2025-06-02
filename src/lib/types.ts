@@ -1,5 +1,6 @@
 export interface Movie {
   imdbID: string;
+  Title: string;
   Plot: string;
   Genre: string;
   Released: string;
