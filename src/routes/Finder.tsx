@@ -37,7 +37,7 @@ export default function Finder(){
         ))}
       </div>
 
-      <Pagination pages={Math.round(data.totalResults/10)} />
+      <Pagination pages={data.totalResults > 10?Math.round(data.totalResults/10):1} />
     </main>
   )
 }
