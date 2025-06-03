@@ -48,7 +48,13 @@ export async function getTopMovies(){
   ];
 }
 
-export async function findMoviesByName({ title, page }: { title: string; page: number }){
+export async function findMoviesByName({ 
+  title, 
+  page 
+}:{ 
+  title: string; 
+  page: number 
+}){
   const result = await instance.get<FoundedMovies>('/', {
     params: {
       apikey: SERVICE_API_KEY,
@@ -61,12 +67,18 @@ export async function findMoviesByName({ title, page }: { title: string; page: n
 }
 
 export async function getMovieById(id: string){
+  const cacheMovie = browserCache.getViewed(id); 
+  
+  if(cacheMovie)
+    return cacheMovie;
+
   const movie = await instance.get<Movie>("/", {
     params: {
       apikey: SERVICE_API_KEY,
       i: id
     }
   });
-
+  
+  browserCache.updateViewed(movie.data);
   return movie.data;
 }

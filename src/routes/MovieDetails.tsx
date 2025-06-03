@@ -18,7 +18,7 @@ export default function MovieDetails(){
     return <Loading />;
 
   if(!data || isError)
-    return <ErrorBoundary />;
+    return <ErrorBoundary message="Erro no servidor" />;
 
   return(
     <div className={clsx(

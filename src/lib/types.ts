@@ -17,9 +17,3 @@ export interface FoundedMovies {
   Search: Movie[];
   totalResults: number;
 }
-
-export interface NotFoundMovies {
-  Error: string;
-}
-
-export type SearchInputRef = React.RefObject<HTMLInputElement>;
