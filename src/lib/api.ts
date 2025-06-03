@@ -2,6 +2,9 @@ import axios from "axios";
 const instance = axios.create({ baseURL: "http://www.omdbapi.com" });
 import type { Movie, FoundedMovies } from "@/lib/types";
 const SERVICE_API_KEY="a67edf09";
+import { BrowserCache } from "@/lib/utils";
+
+const browserCache = new BrowserCache();
 
 export async function getTopMovies(){
   const topList = [
@@ -10,6 +13,11 @@ export async function getTopMovies(){
     "tt0293429",
     "tt4154796"
   ];
+  
+  const cachedMovies = browserCache.getTopList();
+  
+  if(cachedMovies)
+    return cachedMovies 
   
   const apiList = topList.map((id) => instance.get<Movie>('/', {
     params: {
@@ -24,6 +32,13 @@ export async function getTopMovies(){
     three,
     four
   ] = await Promise.all(apiList);
+
+  browserCache.updateTopList([
+    eno.data, 
+    two.data, 
+    three.data, 
+    four.data
+  ]);
 
   return [
     eno.data, 

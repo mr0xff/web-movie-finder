@@ -26,13 +26,13 @@ export default function MovieDetails(){
       `bg-[url('${data.Poster}')] bg-no-repeat bg-center`
     )}>
       <img src={data.Poster} />
-      <div className="flex flex-col gap-y-3 mt-3">
+      <div className="flex flex-col gap-y-3 my-3">
         <h2 className="text-4xl font-bold">{data?.Title}</h2>
         <p className="text-lg">{data?.Plot}</p>
         <p className="font-medium text-sm">{data?.Genre}</p>
         <p className="font-medium">Lançado em: {data.Released}</p>
         {!!data.Ratings &&
-          <div className="space-y-3">
+          <div className="space-y-3 mb-8">
             <p className="flex items-center gap-x-3 font-bold">
               <FaStar className={clsx(
                 "size-8", 
