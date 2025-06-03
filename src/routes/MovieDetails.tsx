@@ -23,7 +23,7 @@ export default function MovieDetails(){
   return(
     <div className={clsx(
       "h-[100vh] flex flex-col items-center md:px-32 lg:px-96",
-      `bg-[url('${data.Poster}')] bg-no-repeat bg-center`
+      // `bg-[url('${data.Poster}')] bg-no-repeat bg-center`
     )}>
       <img src={data.Poster} />
       <div className="flex flex-col gap-y-3 my-3">
