@@ -21,7 +21,10 @@ export class BrowserCache {
 
     if(this.#viewed.size){
       const viewedMovies = Array.from(this.#viewed.values());
-      localStorage.setItem(this.#storageKeys.viewed, JSON.stringify(viewedMovies));
+      const joinedSources = viewedMovies.concat(this.getViewedMovies() ?? []); // mesclar os dados da ram e do disco
+      const merged = new Map<string, Movie>();
+      joinedSources.map((props)=>merged.set(props.imdbID, props)); // eliminar duplicidade no disco
+      localStorage.setItem(this.#storageKeys.viewed, JSON.stringify(Array.from(merged.values())));
     }
   }
 
