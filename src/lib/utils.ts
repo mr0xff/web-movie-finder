@@ -1,4 +1,4 @@
-import type { Movie } from "@/lib/types";
+import type { Movie, FoundedMovies } from "@/lib/types";
 
 // armazenamento persisnte localStorage
 export class BrowserCache {
@@ -9,6 +9,7 @@ export class BrowserCache {
   }
 
   #viewed = new Map<string, Movie>();
+  #foundedResult = new Map<string, FoundedMovies>();
 
   #resetCounter = 0; 
 
@@ -28,8 +29,8 @@ export class BrowserCache {
     }
   }
 
-  addSearchHistory(data: unknown){
-    localStorage.setItem(this.#storageKeys.searchHistory, JSON.stringify(data));
+  addSearchHistory(userQueryString: string, data: FoundedMovies){
+    this.#foundedResult.set(userQueryString, data);
   }
 
   getTopList(){
@@ -48,7 +49,9 @@ export class BrowserCache {
     return JSON.parse(data) as Movie[];
   }
 
-  getSearchHistory(){}
+  getSearchHistory(userQueryString: string){
+    return this.#foundedResult.get(userQueryString);
+  }
 
   cacheTTL(){ // tempo de vida util do cache
     this.#resetCounter++;

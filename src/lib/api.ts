@@ -55,6 +55,11 @@ export async function findMoviesByName({
   title: string; 
   page: number 
 }){
+  const data = browserCache.getSearchHistory(title);
+  
+  if(data)
+    return data
+
   const result = await instance.get<FoundedMovies>('/', {
     params: {
       apikey: SERVICE_API_KEY,
@@ -63,6 +68,7 @@ export async function findMoviesByName({
     }
   });
 
+  browserCache.addSearchHistory(title, result.data);
   return result.data;
 }
 
