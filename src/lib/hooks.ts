@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { findMoviesByName, getTopMovies, getMovieById } from "@/lib/api";
 import type { Movie } from "@/lib/types";
+import { BrowserCache } from "@/lib/utils";
 
 export function useFindMoviesByName(title: string, page: number){
   return useQuery({
@@ -21,4 +22,14 @@ export function useGetMovie(id: string){
     queryKey: ["movie", id],
     queryFn: () => getMovieById(id)
   });
+}
+
+export function useGetViewedMovies(){
+  return useQuery<Movie[] | null>({
+    queryKey: ["movies"],
+    queryFn: ()=> new Promise((resolve)=>{
+      const browserCache = new BrowserCache();
+      resolve(browserCache.getViewedMovies())
+    })
+  })
 }

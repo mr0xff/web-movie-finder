@@ -3,10 +3,11 @@ import Loading from "@/components/Loading";
 import MovieCard from "@/components/MovieCard";
 import Button from "@/components/Button";
 import { IoMdInformationCircleOutline } from "react-icons/io";
-import { useGetTopMovies } from "@/lib/hooks";
+import { useGetTopMovies, useGetViewedMovies } from "@/lib/hooks";
 
 export default function TopMoviesCard(){
   const { data, error, isPending } = useGetTopMovies();
+  const query = useGetViewedMovies();
   
   if(isPending)
     return <Loading />;
@@ -38,10 +39,14 @@ export default function TopMoviesCard(){
         {data.map((props, index) => <MovieCard key={index} movie={props} />)}
       </div>
 
-      <h2 className="uppercase font-bold text-xl">Filmes Visualizados</h2>
-      {/* <div className="mt-3 flex gap-x-3 overflow-x-auto h-96 scroll-none">
-        {data.map((props, index) => <MovieCard key={index} movie={props} />)}
-      </div> */}
+      { !!query.data &&
+        <>
+          <h2 className="uppercase font-bold text-xl">Filmes Visualizados</h2>
+          <div className="mt-3 flex gap-x-3 overflow-x-auto h-96 scroll-none">
+            {query.data?.map((props, index) => <MovieCard key={index} movie={props} />)}
+          </div>
+        </>
+      }
     </div>
   ) 
 }

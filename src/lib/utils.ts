@@ -1,10 +1,10 @@
-import type { Movie } from "./types";
+import type { Movie } from "@/lib/types";
 
 // armazenamento persisnte localStorage
 export class BrowserCache {
   #storageKeys = {
     topMovies: "@toplist", // lista top hero da pagina inicial
-    viewed: "@userViews", // 
+    viewed: "@userViews", // todos os filmes clicados
     searchHistory: "@histories", // salvar resultado encontrados das pesquisas
   }
 
@@ -18,6 +18,11 @@ export class BrowserCache {
 
   updateViewed(data: Movie){
     this.#viewed.set(data.imdbID, data); // armazenamento na RAM
+
+    if(this.#viewed.size){
+      const viewedMovies = Array.from(this.#viewed.values());
+      localStorage.setItem(this.#storageKeys.viewed, JSON.stringify(viewedMovies));
+    }
   }
 
   addSearchHistory(data: unknown){
@@ -31,6 +36,13 @@ export class BrowserCache {
 
   getViewed(movieId: string){
     return this.#viewed.get(movieId);
+  }
+
+  getViewedMovies(){
+    const data = localStorage.getItem(this.#storageKeys.viewed);
+    if(!data)
+      return null;
+    return JSON.parse(data) as Movie[];
   }
 
   getSearchHistory(){}
