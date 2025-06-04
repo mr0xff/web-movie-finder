@@ -5,7 +5,6 @@ import Finder from "@/routes/Finder";
 import Layout from "@/components/Layout";
 import MovieDetails from "@/routes/MovieDetails";
 
-
 export default function Router(){
   return(
     <BrowserRouter>
