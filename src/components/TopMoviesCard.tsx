@@ -4,6 +4,7 @@ import MovieCard from "@/components/MovieCard";
 import Button from "@/components/Button";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { useGetTopMovies, useGetViewedMovies } from "@/lib/hooks";
+import clsx from "clsx";
 
 export default function TopMoviesCard(){
   const { data, error, isPending } = useGetTopMovies();
@@ -17,7 +18,10 @@ export default function TopMoviesCard(){
 
   return(
     <div className="my-3">
-      <div className="h-96 mb-3 rounded-xl bg-[url('https://m.media-amazon.com/images/M/MV5BY2Q2ZmI5ZjUtNWVhMC00YzJkLTlmYjMtY2RmZDhkNzEzYjZhXkEyXkFqcGc@._V1_SX300.jpg')] bg-no-repeat bg-contain bg-center">
+      <div className={clsx(
+        "h-96 mb-3 rounded-xl",
+        `bg-[url(https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg)] bg-no-repeat bg-center`
+      )}>
         <div className="w-full flex h-full items-center bg-gradient-to-t from-black from-[10%] px-16 md:pl-32">
           <div className="w-full">
             <p className="uppercase text-white/50 text-sm font-medium">Destaque</p>

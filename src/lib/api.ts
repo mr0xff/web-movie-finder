@@ -8,10 +8,10 @@ const browserCache = new BrowserCache();
 
 export async function getTopMovies(){
   const topList = [
+    "tt4154796",
+    "tt4158110",
     "tt10366206",
     "tt1825683",
-    "tt0293429",
-    "tt4154796"
   ];
   
   const cachedMovies = browserCache.getTopList();
