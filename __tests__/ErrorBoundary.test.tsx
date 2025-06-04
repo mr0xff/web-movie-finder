@@ -1,8 +1,8 @@
-import { test, expect, vi } from "vitest";
-import { screen, render, fireEvent } from "@testing-library/react";
+import { test, expect } from "vitest";
+import { screen, render } from "@testing-library/react";
 import ErrorBoundary from '../src/components/ErrorBoundary';
 
-test("Error ", ()=> {
+test("Error without props", ()=> {
   render(<ErrorBoundary />);
   expect(screen.getByLabelText("icon"));
   expect(screen.getByRole("paragraph")).toHaveTextContent(/Opps!! Ocorrou um erro !!!/);
