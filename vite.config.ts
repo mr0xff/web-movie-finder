@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "https://mr0xff.github.io/web-movie-finder/",
+  base: "https://mr0xff.github.io/",
   plugins: [react(), tailwindcss()],
   test: {
     environment: "jsdom",
