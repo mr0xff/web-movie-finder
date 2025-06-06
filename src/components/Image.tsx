@@ -1,5 +1,6 @@
 import { Img } from "react-image";
 import clsx from "clsx";
+import Loading from "./Loading";
 
 export default function Image({ 
   src, 
@@ -10,7 +11,10 @@ export default function Image({
 }){
   return(
     <Img
-      src={[ src, "/bg.jpg" ]} 
+      src={[ src, "/bg.jpg" ]}
+      loader={
+        <div className="flex justify-center items-center h-96"><Loading /></div>
+      }
       className={clsx(
         className,
         "max-w-100"
