@@ -1,4 +1,5 @@
 import type { Movie, FoundedMovies } from "@/lib/types";
+type SavedMovies = Map<number, FoundedMovies>;
 
 // estratégia de Cache de dados
 export class BrowserCache {
@@ -10,6 +11,7 @@ export class BrowserCache {
 
   #viewed = new Map<string, Movie>();
   #foundedResult = new Map<string, FoundedMovies>();
+  #searchResult = new Map<string, SavedMovies>()
 
   updateTopList(data: unknown){
     localStorage.setItem(this.#storageKeys.topMovies, JSON.stringify(data));
@@ -27,8 +29,17 @@ export class BrowserCache {
     }
   }
 
-  addSearchHistory(userQueryString: string, data: FoundedMovies){
-    this.#foundedResult.set(userQueryString, data);
+  addSearchHistory(
+    userQuery: string, 
+    page: number, 
+    data: FoundedMovies
+  ){
+    
+    // this.#foundedResult.set(ure, data);
+    const movies = new Map<number, FoundedMovies>(this.#searchResult.get(userQuery));
+    movies.set(page, data)
+    this.#searchResult.set(userQuery, movies);
+    console.log(this.#searchResult);
   }
 
   getTopList(){
@@ -47,7 +58,7 @@ export class BrowserCache {
     return JSON.parse(data) as Movie[];
   }
 
-  getSearchHistory(userQueryString: string){
-    return this.#foundedResult.get(userQueryString);
+  getSearchHistory(userQuery: string, page: number){
+    return this.#searchResult.get(userQuery)?.get(page);
   }
 }

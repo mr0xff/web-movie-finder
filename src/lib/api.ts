@@ -55,7 +55,7 @@ export async function findMoviesByName({
   title: string; 
   page: number 
 }){
-  const data = browserCache.getSearchHistory(title);
+  const data = browserCache.getSearchHistory(title, page);
   
   if(data)
     return data
@@ -68,7 +68,7 @@ export async function findMoviesByName({
     }
   });
 
-  browserCache.addSearchHistory(title, result.data);
+  browserCache.addSearchHistory(title, page, result.data);
   return result.data;
 }
 
