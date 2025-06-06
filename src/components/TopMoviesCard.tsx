@@ -48,7 +48,7 @@ export default function TopMoviesCard(){
       </div>
 
       <h2 className="uppercase font-bold text-xl self-start">Filmes em Destaque</h2>
-      <div className="my-8 flex overflow-x-auto w-screen md:w-[55vw] md:flex-none md:grid md:grid-cols-2 lg:grid-cols-4 my-8 gap-x-3 md:gap-x-0">
+      <div className="my-8 flex overflow-x-auto w-screen md:w-[55vw] md:flex-none  my-8 gap-x-3">
         {data.map((props, index) => <MovieCard key={index} movie={props} />)}
       </div>
 

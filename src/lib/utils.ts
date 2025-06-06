@@ -10,7 +10,6 @@ export class BrowserCache {
   }
 
   #viewed = new Map<string, Movie>();
-  #foundedResult = new Map<string, FoundedMovies>();
   #searchResult = new Map<string, SavedMovies>()
 
   updateTopList(data: unknown){
@@ -35,7 +34,6 @@ export class BrowserCache {
     data: FoundedMovies
   ){
     
-    // this.#foundedResult.set(ure, data);
     const movies = new Map<number, FoundedMovies>(this.#searchResult.get(userQuery));
     movies.set(page, data)
     this.#searchResult.set(userQuery, movies);
