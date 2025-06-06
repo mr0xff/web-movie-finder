@@ -39,14 +39,14 @@ export default function TopMoviesCard(){
       </div>
 
       <h2 className="uppercase font-bold text-xl self-start">Filmes em Destaque</h2>
-      <div className="flex overflow-x-auto scroll-my-3 w-screen md:grid lg:grid-cols-4 my-8 gap-x-3">
+      <div className="my-8 flex overflow-x-auto w-screen md:w-[55vw] md:flex-none md:grid md:grid-cols-2 lg:grid-cols-4 my-8 gap-x-3 md:gap-x-0">
         {data.map((props, index) => <MovieCard key={index} movie={props} />)}
       </div>
 
       { !!query.data &&
         <>
           <h2 className="uppercase font-bold text-xl self-start">Filmes Visualizados</h2>
-          <div className="mt-3 flex gap-x-3 overflow-x-auto h-96 scroll-none lg:w-[60vw] md:max-w-[75vw]">
+          <div className="my-8 flex w-screen overflow-x-auto md:w-[55vw]">
             {query.data?.map((props, index) => <MovieCard key={index} movie={props} />)}
           </div>
         </>

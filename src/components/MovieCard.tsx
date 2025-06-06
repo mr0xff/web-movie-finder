@@ -41,7 +41,7 @@ export default function MovieCard({
           if(enabledRate)
             setState(true);
         }} 
-        className="m-1 relative w-60 hover:cursor-pointer hover:scale-110 transition min-h-96 outline outline-gray-500/25"
+        className="m-1 relative w-60 hover:cursor-pointer hover:scale-101 transition min-h-96 outline outline-gray-500/25 hover:outline-gray-500/50"
       >
         <div className="absolute z-10 top-0 bg-gradient-to-b from-black/50 from-[50%] w-full px-3 py-2 h-16" />
         <img src={movie.Poster} className="z-0 w-full h-full" />
