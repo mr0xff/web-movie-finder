@@ -4,11 +4,14 @@ import MovieCard from "@/components/MovieCard";
 import Button from "@/components/Button";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { useGetTopMovies, useGetViewedMovies } from "@/lib/hooks";
+import { useNavigate } from "react-router";
+
 import clsx from "clsx";
 
 export default function TopMoviesCard(){
   const { data, error, isPending } = useGetTopMovies();
   const query = useGetViewedMovies();
+  const navigate = useNavigate();
   
   if(isPending)
     return <Loading />;
@@ -30,7 +33,13 @@ export default function TopMoviesCard(){
               <p className="font-medium">{data[0].Genre}</p> <span className="hidden md:block">-</span>
               <p className="font-medium">{data[0].Released}</p>
             </div>
-            <Button className="flex gap-x-2 items-center">
+            <Button 
+              className="flex gap-x-2 items-center" 
+              onClick={()=>navigate({
+                pathname: "/movie",
+                search: `movieId=${data[0].imdbID}`
+              })}
+            >
               <IoMdInformationCircleOutline className="size-7" />
               Saber mais
             </Button>

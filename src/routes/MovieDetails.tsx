@@ -4,6 +4,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import Loading from "@/components/Loading";
 import clsx from "clsx";
 import { FaStar } from "react-icons/fa";
+import Image from "@/components/Image";
 
 export default function MovieDetails(){
   const [ searchParams ] = useSearchParams();
@@ -25,7 +26,7 @@ export default function MovieDetails(){
       "h-[100vh] flex flex-col items-center md:px-32 lg:px-96",
       // `bg-[url('${data.Poster}')] bg-no-repeat bg-center`
     )}>
-      <img src={data.Poster} />
+      <Image src={data.Poster} />
       <div className="flex flex-col gap-y-3 my-3">
         <h2 className="text-4xl font-bold">{data?.Title}</h2>
         <p className="text-lg">{data?.Plot}</p>
@@ -37,13 +38,13 @@ export default function MovieDetails(){
               <FaStar className={clsx(
                 "size-8", 
                 {
-                  "text-yellow-500" : Number(data?.Ratings[0].Value.split("/")[0]) > 7.0
+                  "text-yellow-500" : Number(data?.Ratings[0]?.Value.split("/")[0]) > 7.0
                 }
               )}
               /> 
-              {data?.Ratings[0].Value.split("/")[0]}
+              {data?.Ratings[0]?.Value.split("/")[0] ?? "Sem avaliação"}
             </p>
-            <p className="text-sm italic text-gray-400">Fonte de Votação: {data?.Ratings[0].Source}</p>
+            <p className="text-sm italic text-gray-400">Fonte de Votação: {data?.Ratings[0]?.Source ?? "Sem fonte"}</p>
           </div>
         }
       </div>
