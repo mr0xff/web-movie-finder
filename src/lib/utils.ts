@@ -1,6 +1,6 @@
 import type { Movie, FoundedMovies } from "@/lib/types";
 
-// armazenamento persisnte localStorage
+// estratégia de Cache de dados
 export class BrowserCache {
   #storageKeys = {
     topMovies: "@toplist", // lista top hero da pagina inicial
@@ -10,8 +10,6 @@ export class BrowserCache {
 
   #viewed = new Map<string, Movie>();
   #foundedResult = new Map<string, FoundedMovies>();
-
-  #resetCounter = 0; 
 
   updateTopList(data: unknown){
     localStorage.setItem(this.#storageKeys.topMovies, JSON.stringify(data));
@@ -51,10 +49,5 @@ export class BrowserCache {
 
   getSearchHistory(userQueryString: string){
     return this.#foundedResult.get(userQueryString);
-  }
-
-  cacheTTL(){ // tempo de vida util do cache
-    this.#resetCounter++;
-
   }
 }

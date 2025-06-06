@@ -17,7 +17,7 @@ export default function TopMoviesCard(){
     return <ErrorBoundary />;
 
   return(
-    <div className="my-3">
+    <div className="flex flex-col items-center mb-32">
       <div className={clsx(
         "h-96 mb-3 rounded-xl",
         `bg-[url(https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg)] bg-no-repeat bg-center`
@@ -38,15 +38,15 @@ export default function TopMoviesCard(){
         </div>
       </div>
 
-      <h2 className="uppercase font-bold text-xl">Filmes em Destaque</h2>
-      <div className="mt-3 flex gap-x-3 overflow-x-auto h-96 w-[100vw] md:max-w-[75vw]">
+      <h2 className="uppercase font-bold text-xl self-start">Filmes em Destaque</h2>
+      <div className="flex overflow-x-auto scroll-my-3 w-screen md:grid lg:grid-cols-4 my-8 gap-x-3">
         {data.map((props, index) => <MovieCard key={index} movie={props} />)}
       </div>
 
       { !!query.data &&
         <>
-          <h2 className="uppercase font-bold text-xl">Filmes Visualizados</h2>
-          <div className="mt-3 flex gap-x-3 overflow-x-auto h-96 scroll-none w-[100vw] md:max-w-[75vw]">
+          <h2 className="uppercase font-bold text-xl self-start">Filmes Visualizados</h2>
+          <div className="mt-3 flex gap-x-3 overflow-x-auto h-96 scroll-none lg:w-[60vw] md:max-w-[75vw]">
             {query.data?.map((props, index) => <MovieCard key={index} movie={props} />)}
           </div>
         </>

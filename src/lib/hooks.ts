@@ -17,11 +17,10 @@ export function useGetTopMovies(){
   });
 }
 
-export function useGetMovie(id: string, state=true){
+export function useGetMovie(id: string){
   return useQuery<Movie>({
     queryKey: ["movie", id],
-    queryFn: () => getMovieById(id),
-    enabled: state
+    queryFn: () => getMovieById(id)
   });
 }
 

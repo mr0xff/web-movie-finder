@@ -22,7 +22,7 @@ export default function Finder(){
     return <ErrorBoundary />;
 
   if(!data?.Search)
-    return <ErrorBoundary message={`O filtro "${name}" não foi encontrado!`} />;
+    return <ErrorBoundary message={`O filme "${name}" não foi encontrado!`} />;
 
   return(
     <main className="flex flex-col items-center">
