@@ -3,8 +3,15 @@
 Projecto de implementação de Front end web
 
 # Preview UI Design
+
+Página principal
+
+![alt text](public/image.png)
+
+Página de Busca
+
 ![alt text](public/image-2.png)
 
-pagina de busca
+Página de Detalhes
 
-![alt text](public/image-1.png)
+![alt text](public/image-3.png)
