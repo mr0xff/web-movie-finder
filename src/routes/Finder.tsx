@@ -1,9 +1,11 @@
-import ErrorBoundary from "@/components/ErrorBoundary";
-import MovieCard from "@/components/MovieCard";
-import Pagination from "@/components/Pagination";
 import { useFindMoviesByName } from "@/lib/hooks";
 import { useSearchParams } from "react-router";
-import Loading from "@/components/Loading";
+import { 
+  MovieCardLazy, 
+  PaginationLazy, 
+  ErrorBoundaryLazy, 
+  LoadingLazy 
+} from "@/components/SplitedComponents";
 
 export default function Finder(){
   const [ searchParams ] = useSearchParams();
@@ -11,18 +13,18 @@ export default function Finder(){
   const page = Number(searchParams.get("page"));
   
   if(!name || !page)
-    return <ErrorBoundary />;
+    return <ErrorBoundaryLazy />;
   
   const { data, isPending, isError } = useFindMoviesByName(name, page);
 
   if(isPending)
-    return <Loading />;
+    return <LoadingLazy />;
   
   if(isError)
-    return <ErrorBoundary />;
+    return <ErrorBoundaryLazy />;
 
   if(!data?.Search)
-    return <ErrorBoundary message={`O filme "${name}" não foi encontrado!`} />;
+    return <ErrorBoundaryLazy message={`O filme "${name}" não foi encontrado!`} />;
 
   return(
     <main className="flex flex-col items-center">
@@ -30,7 +32,7 @@ export default function Finder(){
 
       <div className="flex flex-col items-center gap-y-3 mb-16 mt-8 md:grid md:grid-cols-2 lg:grid-cols-4">
         {data?.Search.map((props, index)=>(
-          <MovieCard
+          <MovieCardLazy
             key={index}
             movie={props} 
             enabledRate
@@ -38,7 +40,7 @@ export default function Finder(){
         ))}
       </div>
 
-      <Pagination pages={data.totalResults > 10?Math.round(data.totalResults/10):1} />
+      <PaginationLazy pages={data.totalResults > 10?Math.round(data.totalResults/10):1} />
     </main>
   )
 }

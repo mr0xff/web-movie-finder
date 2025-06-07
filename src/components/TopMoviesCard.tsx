@@ -1,10 +1,8 @@
-import ErrorBoundary from "@/components/ErrorBoundary";
-import Loading from "@/components/Loading";
-import MovieCard from "@/components/MovieCard";
 import Button from "@/components/Button";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { useGetTopMovies, useGetViewedMovies } from "@/lib/hooks";
 import { useNavigate } from "react-router";
+import { MovieCardLazy, ErrorBoundaryLazy, LoadingLazy } from "@/components/SplitedComponents";
 
 import clsx from "clsx";
 
@@ -14,10 +12,10 @@ export default function TopMoviesCard(){
   const navigate = useNavigate();
   
   if(isPending)
-    return <Loading />;
+    return <LoadingLazy />;
 
   if(error)
-    return <ErrorBoundary />;
+    return <ErrorBoundaryLazy />;
 
   return(
     <div className="flex flex-col items-center mb-32">
@@ -49,14 +47,14 @@ export default function TopMoviesCard(){
 
       <h2 className="uppercase font-bold text-xl self-start">Filmes em Destaque</h2>
       <div className="my-8 flex overflow-x-auto w-screen md:w-[55vw] md:flex-none  my-8 gap-x-3">
-        {data.map((props, index) => <MovieCard key={index} movie={props} />)}
+        {data.map((props, index) => <MovieCardLazy key={index} movie={props} />)}
       </div>
 
       { !!query.data &&
         <>
           <h2 className="uppercase font-bold text-xl self-start">Filmes Visualizados</h2>
           <div className="my-8 flex w-screen overflow-x-auto md:w-[55vw]">
-            {query.data?.map((props, index) => <MovieCard key={index} movie={props} />)}
+            {query.data?.map((props, index) => <MovieCardLazy key={index} movie={props} />)}
           </div>
         </>
       }

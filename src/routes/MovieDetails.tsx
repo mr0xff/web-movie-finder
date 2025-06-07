@@ -1,31 +1,33 @@
 import { useGetMovie } from "@/lib/hooks";
 import { useSearchParams } from "react-router";
-import ErrorBoundary from "@/components/ErrorBoundary";
-import Loading from "@/components/Loading";
 import clsx from "clsx";
 import { FaStar } from "react-icons/fa";
-import Image from "@/components/Image";
+import { 
+  ErrorBoundaryLazy, 
+  ImageLazy, 
+  LoadingLazy 
+} from "@/components/SplitedComponents";
 
 export default function MovieDetails(){
   const [ searchParams ] = useSearchParams();
   const movieId = searchParams.get("movieId");
   
   if(!movieId)
-    return <ErrorBoundary />;
+    return <ErrorBoundaryLazy />;
 
   const { data, isPending, isError } = useGetMovie(movieId);
   
   if(isPending)
-    return <Loading />;
+    return <LoadingLazy />;
 
   if(!data || isError)
-    return <ErrorBoundary message="Erro no servidor" />;
+    return <ErrorBoundaryLazy message="Erro no servidor" />;
 
   return(
     <div className={clsx(
       "h-[100vh] flex flex-col items-center md:mx-[20vw]",
     )}>
-      <Image src={data.Poster} />
+      <ImageLazy src={data.Poster} />
       <div className="flex flex-col gap-y-3 my-3">
         <h2 className="text-4xl font-bold">{data?.Title}</h2>
         <p className="text-lg">{data?.Plot}</p>
