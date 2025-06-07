@@ -6,12 +6,12 @@ Projecto de implementação de Front end web
 
 Página principal
 
-![alt text](public/image.png)
+![alt text](public/image-min.png)
 
 Página de Busca
 
-![alt text](public/image-2.png)
+![alt text](public/image-2-min.png)
 
 Página de Detalhes
 
-![alt text](public/image-3.png)
+![alt text](public/image-3-min.png)
