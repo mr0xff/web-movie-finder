@@ -31,5 +31,5 @@ export function useGetViewedMovies(){
       const browserCache = new BrowserCache();
       resolve(browserCache.getViewedMovies())
     })
-  })
+  });
 }

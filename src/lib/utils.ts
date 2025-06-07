@@ -32,12 +32,10 @@ export class BrowserCache {
     userQuery: string, 
     page: number, 
     data: FoundedMovies
-  ){
-    
+  ){   
     const movies = new Map<number, FoundedMovies>(this.#searchResult.get(userQuery));
     movies.set(page, data)
     this.#searchResult.set(userQuery, movies);
-    console.log(this.#searchResult);
   }
 
   getTopList(){
@@ -46,7 +44,7 @@ export class BrowserCache {
   }
 
   getViewed(movieId: string){
-    return this.#viewed.get(movieId);
+    return this.#viewed.get(movieId) ?? null;
   }
 
   getViewedMovies(){
@@ -57,6 +55,6 @@ export class BrowserCache {
   }
 
   getSearchHistory(userQuery: string, page: number){
-    return this.#searchResult.get(userQuery)?.get(page);
+    return this.#searchResult.get(userQuery)?.get(page) ?? null;
   }
 }
