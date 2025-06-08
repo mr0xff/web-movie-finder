@@ -7,7 +7,7 @@ import MovieDetails from "@/routes/MovieDetails";
 
 export default function Router(){
   return(
-    <BrowserRouter>
+    <BrowserRouter basename="web-movie-finder">
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
