@@ -1,5 +1,5 @@
 import axios from "axios";
-const instance = axios.create({ baseURL: "http://www.omdbapi.com" });
+const instance = axios.create({ baseURL: "https://www.omdbapi.com" });
 import type { Movie, FoundedMovies } from "@/lib/types";
 const SERVICE_API_KEY="a67edf09";
 import { BrowserCache } from "@/lib/utils";
