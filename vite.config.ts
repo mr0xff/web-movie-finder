@@ -18,4 +18,5 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  base: "https://github.com/mr0xff/web-movie-finder"
 })
