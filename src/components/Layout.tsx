@@ -1,7 +1,6 @@
 import { Outlet } from "react-router";
 import NavBar from "@/components/NavBar";
 import SearchMobile from "@/components/SearchMobile";
-import Footer from "@/components/Footer";
 
 export default function Layout(){
   return(
@@ -11,7 +10,6 @@ export default function Layout(){
         <Outlet />
       </section>
       <SearchMobile />
-      <Footer />
     </main>
   )  
 }
