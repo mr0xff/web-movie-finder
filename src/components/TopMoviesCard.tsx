@@ -4,8 +4,6 @@ import { useGetTopMovies, useGetViewedMovies } from "@/lib/hooks";
 import { useNavigate } from "react-router";
 import { MovieCardLazy, ErrorBoundaryLazy, LoadingLazy } from "@/components/SplitedComponents";
 import clsx from "clsx";
-import { MotionDiv } from "@/components/AnimatedComponent";
-
 
 export default function TopMoviesCard(){
   const { data, error, isPending } = useGetTopMovies();
@@ -47,9 +45,9 @@ export default function TopMoviesCard(){
       </div>
 
       <h2 className="uppercase font-bold text-xl self-start">Filmes em Destaque</h2>
-      <MotionDiv  className="my-8 flex mt-16 overflow-x-auto w-screen md:w-[55vw] md:flex-none  my-8 gap-x-3">
+      <div  className="my-8 flex mt-16 overflow-x-auto w-screen md:w-[55vw] md:flex-none  my-8 gap-x-3">
         {data.map((props, index) => <MovieCardLazy key={index} movie={props} />)}
-      </MotionDiv>
+      </div>
 
       { !!query.data &&
         <>

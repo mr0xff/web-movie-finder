@@ -1,6 +1,6 @@
 import { Img } from "react-image";
 import clsx from "clsx";
-import Loading from "./Loading";
+import Loading from "@/components/Loading";
 
 export default function Image({ 
   src, 
