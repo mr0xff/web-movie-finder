@@ -8,7 +8,7 @@ import clsx from "clsx";
 import Image from "@/components/Image";
 
 function ViewRating({ id }:{ id: string }){
-  const { data, isPending } =  useGetMovie(id);
+  const { data, isPending } =  useGetMovie(id, true);
   
   if(isPending)
     return <Loading />;

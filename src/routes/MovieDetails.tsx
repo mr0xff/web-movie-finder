@@ -25,10 +25,10 @@ export default function MovieDetails(){
 
   return(
     <div className={clsx(
-      "h-[100vh] flex flex-col items-center md:mx-[20vw]",
+      "h-[100vh] flex flex-col items-center md:mx-[20vw] md:w-1/2",
     )}>
       <ImageLazy src={data.Poster} />
-      <div className="flex flex-col gap-y-3 my-3">
+      <div className="flex flex-col gap-y-3 my-3 self-start">
         <h2 className="text-4xl font-bold">{data?.Title}</h2>
         <p className="text-lg">{data?.Plot}</p>
         <p className="font-medium text-sm">{data?.Genre}</p>

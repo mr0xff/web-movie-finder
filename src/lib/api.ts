@@ -72,12 +72,14 @@ export async function findMoviesByName({
   return result.data;
 }
 
-export async function getMovieById(id: string){
+export async function getMovieById(id: string, onlyRAM = false){
   const cacheMovie = browserCache.getViewed(id); 
   
-  if(cacheMovie)
+  if(cacheMovie){
+    browserCache.updateViewed(cacheMovie, onlyRAM);
     return cacheMovie;
-
+  }
+    
   const movie = await instance.get<Movie>("/", {
     params: {
       apikey: SERVICE_API_KEY,
@@ -85,6 +87,6 @@ export async function getMovieById(id: string){
     }
   });
   
-  browserCache.updateViewed(movie.data);
+  browserCache.updateViewed(movie.data, onlyRAM);
   return movie.data;
 }

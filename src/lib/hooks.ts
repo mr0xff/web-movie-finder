@@ -17,10 +17,10 @@ export function useGetTopMovies(){
   });
 }
 
-export function useGetMovie(id: string){
+export function useGetMovie(id: string, onlyRAM=false){
   return useQuery<Movie>({
     queryKey: ["movie", id],
-    queryFn: () => getMovieById(id)
+    queryFn: () => getMovieById(id, onlyRAM)
   });
 }
 
