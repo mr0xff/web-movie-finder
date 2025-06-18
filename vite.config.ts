@@ -18,5 +18,10 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: "https://web-movie-finder.onrender.com/"
+  preview: {
+    allowedHosts: [
+      "web-movie-finder.onrender.com",
+      "web-movie-finder-production.up.railway.app"
+    ]
+  }
 })
