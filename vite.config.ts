@@ -19,9 +19,6 @@ export default defineConfig({
     },
   },
   preview: {
-    allowedHosts: [
-      "web-movie-finder.onrender.com",
-      "web-movie-finder-production.up.railway.app"
-    ]
+    allowedHosts: true
   }
 })
