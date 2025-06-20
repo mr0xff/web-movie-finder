@@ -2,16 +2,12 @@
 
 Projecto de implementação de Front end web
 
-# Preview UI Design
+## Links
+* <a href="https://web-movie-finder-production-5e22.up.railway.app/">Deployment no Railway</a>
 
-Página principal
+* <a href="https://web-movie-finder-1.onrender.com/">Deployment no Render</a>
+
+### Página principal
 
 ![alt text](public/image-min.png)
 
-Página de Busca
-
-![alt text](public/image-2-min.png)
-
-Página de Detalhes
-
-![alt text](public/image-3-min.png)
