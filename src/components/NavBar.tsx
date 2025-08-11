@@ -4,24 +4,28 @@ import { IoCloseOutline } from "react-icons/io5";
 import { SearchInputContext } from "@/lib/contextProvider";
 import { BiMoviePlay } from "react-icons/bi";
 import { useNavigate, NavLink } from "react-router";
+import { useForm } from "@tanstack/react-form";
 
 export default function NavBar() {
   const [query, setQuery] = useState("");
   const inputRef = useContext(SearchInputContext);
   const navigate = useNavigate();
+  const form = useForm({
+    defaultValues: {
+      movieName: ""
+    },
+    onSubmit: ({ value })=>{
+      navigate({
+        pathname: '/finder',
+        search: `name=${value.movieName.trim()}&page=1`
+      })
+    }
+  })
 
   const clearSearchInput = ()=>{
     setQuery("");
     navigate('/');
   }
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    navigate({
-      pathname: '/finder',
-      search: `name=${query.trim()}&page=1`
-    })
-  };
 
   return (
     <nav className="bg-gray-500/10 backdrop-blur-md shadow-md fixed top-0 w-full z-50">
@@ -35,16 +39,32 @@ export default function NavBar() {
 
         <form
           aria-label="search-input"
-          onSubmit={handleSearch}
+          onSubmit={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            form.handleSubmit();
+          }}
           className="flex items-center w-full max-w-sm bg-black rounded-xl px-4 py-2 outline-2 outline-red-500"
         >
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Buscar por Título ..."
-            className="flex-grow outline-none bg-transparent"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
+          <form.Field
+            name="movieName"
+            validators={{
+              onChange: ({ value }) => !value ? "escreva" : undefined
+            }}
+            children={(field)=>{
+              return(
+                <input 
+                 ref={inputRef}
+                  type="text"
+                  name={field.name}
+                  value={field.state.value}
+                  onBlur={field.handleBlur}
+                  placeholder="Buscar por Título ..."
+                  className="flex-grow outline-none bg-transparent"
+                  onChange={(e) => field.handleChange(e.target.value)}
+                />
+              )
+            }}
           />
           <button type="submit" className="hidden md:block hover:text-gray-600">
             <FiSearch size={20} />

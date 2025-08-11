@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router";
+import { HashRouter, Route, Routes } from "react-router";
 
 import Home from "@/routes/Home";
 import Finder from "@/routes/Finder";
@@ -7,7 +7,7 @@ import MovieDetails from "@/routes/MovieDetails";
 
 export default function Router(){
   return(
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
@@ -15,6 +15,6 @@ export default function Router(){
           <Route path="/movie" element={<MovieDetails />} /> 
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
