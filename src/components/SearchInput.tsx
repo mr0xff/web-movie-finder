@@ -9,6 +9,7 @@ export default function SearchInput() {
   const [query, setQuery] = useState("");
   const inputRef = useContext(SearchInputContext);
   const navigate = useNavigate();
+
   const form = useForm({
     defaultValues: {
       movieName: ""
@@ -21,7 +22,7 @@ export default function SearchInput() {
       navigate({
         pathname: '/finder',
         search: params.toString()
-      })
+      });
     }
   })
 
@@ -53,7 +54,7 @@ export default function SearchInput() {
               name={field.name}
               value={field.state.value}
               onBlur={field.handleBlur}
-              placeholder="Buscar por Título ..."
+              placeholder="Escreva o titulo do filme"
               className="flex-grow outline-none bg-transparent"
               onChange={(e) => field.handleChange(e.target.value)}
             />

@@ -9,9 +9,8 @@ import {
 
 export default function Finder(){
   const [ searchParams ] = useSearchParams();
-  const name = searchParams.get("name"); 
-  const page = Number(searchParams.get("page"));
-  
+  const [ name, page ] = [ searchParams.get("n"), Number(searchParams.get("p"))];
+
   if(!name || !page)
     return <ErrorBoundaryLazy />;
   
