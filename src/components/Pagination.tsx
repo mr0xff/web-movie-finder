@@ -3,35 +3,32 @@ import { GrFormNext } from "react-icons/gr";
 import { useSearchParams } from "react-router";
 import { useEffect } from "react";
 
-export default function Pagination({ 
-  pages
-}: { 
-  pages: number; 
-}){
+export default function Pagination({ pages }: { pages: number}){
   const [ search, setSearch ] = useSearchParams();
-  const page = Number(search.get("page")) ?? 1;
+  const PAGE_PARAM = "p";
+  const page = Number(search.get("p")) ?? 1;
 
   const nextPage = () => { 
     if(page < pages){
-      search.set("page", (page+1).toString());
+      search.set(PAGE_PARAM, (page+1).toString());
       setSearch(search.toString());
     }
   }
 
   const prevPage = () => {
     if(page > 1){
-      search.set("page", (page - 1).toString());
+      search.set(PAGE_PARAM, (page - 1).toString());
       setSearch(search.toString());
     }
   }
 
   useEffect(()=> {
     if(page < 1){
-      search.set("page", "1");
+      search.set(PAGE_PARAM, "1");
       setSearch(search.toString());
     }else {
       if (page > pages){
-        search.set("page", pages.toString());
+        search.set(PAGE_PARAM, pages.toString());
         setSearch(search.toString());
       }
     }

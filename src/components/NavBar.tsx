@@ -3,7 +3,6 @@ import { NavLink } from "react-router";
 import SearchInput from "@/components/SearchInput";
 
 export default function NavBar() {
-
   return (
     <nav className="bg-gray-500/10 backdrop-blur-md shadow-md fixed top-0 w-full z-50">
       <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between">
