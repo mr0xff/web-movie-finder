@@ -15,7 +15,22 @@ export default defineConfig({
       registerType: 'autoUpdate',
       devOptions: {
         enabled: true
-      } 
+      },
+      manifest: {
+        name: "Movie Finder",
+        description: "Search your favorites movies",
+        background_color: "#000000ff",
+        theme_color: "#fa0000ff",
+        lang: "pt",
+        icons: [
+          {
+            src: "vite.svg",
+            purpose: "any",
+            sizes: "48x48",
+            type: "image/svg"
+          }
+        ]
+      }
     })
   ],
   test: {
