@@ -27,9 +27,6 @@ export function useGetMovie(id: string, onlyRAM=false){
 export function useGetViewedMovies(){
   return useQuery<Movie[] | null>({
     queryKey: ["movies"],
-    queryFn: ()=> new Promise((resolve)=>{
-      const browserCache = new BrowserCache();
-      resolve(browserCache.getViewedMovies())
-    })
+    queryFn: ()=> Promise.resolve((new BrowserCache()).getViewedMovies())
   });
 }

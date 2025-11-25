@@ -2,8 +2,12 @@ import axios from "axios";
 import type { Movie, FoundedMovies } from "@/lib/types";
 import { BrowserCache } from "@/lib/utils";
 
-const SERVICE_API_KEY="a67edf09";
-const instance = axios.create({ baseURL: "https://www.omdbapi.com" });
+const instance = axios.create({ 
+  baseURL: "https://www.omdbapi.com", 
+  params: {
+    apiKey: "a67edf09"
+  } 
+});
 const browserCache = new BrowserCache();
 
 export async function getTopMovies(){
@@ -20,10 +24,7 @@ export async function getTopMovies(){
     return cachedMovies 
   
   const apiList = topList.map((id) => instance.get<Movie>('/', {
-    params: {
-      i: id,
-      apiKey: SERVICE_API_KEY
-    }
+    params: { i: id }
   }));
 
   const [
@@ -62,7 +63,6 @@ export async function findMoviesByName({
 
   const result = await instance.get<FoundedMovies>('/', {
     params: {
-      apikey: SERVICE_API_KEY,
       s: title,
       page
     }
@@ -81,10 +81,7 @@ export async function getMovieById(id: string, onlyRAM = false){
   }
     
   const movie = await instance.get<Movie>("/", {
-    params: {
-      apikey: SERVICE_API_KEY,
-      i: id
-    }
+    params: { i: id }
   });
   
   browserCache.updateViewed(movie.data, onlyRAM);
