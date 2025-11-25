@@ -2,7 +2,6 @@ import axios from "axios";
 import type { Movie, FoundedMovies } from "@/lib/types";
 import { BrowserCache } from "@/lib/utils";
 
-// const SERVICE_API_KEY="a67edf09";
 const instance = axios.create({ 
   baseURL: "https://www.omdbapi.com", 
   params: {
